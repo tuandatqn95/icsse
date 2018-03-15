@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+	<div id="wrapper">
+		<!-- start header -->
+		<header th:replace="layout :: header"></header>
+		<!-- end header -->
+		<div th:replace="layout :: slider"></div>
+		<section id="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8">
+						<h3 th:text="${post.title}" class="text-center"></h3>
+						<th:block th:utext="${post.content}"></th:block>
+					</div>
+					<div class="col-lg-4">
+						<aside th:replace="layout :: right-sidebar"></aside>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer th:replace="layout :: footer"></footer>
+	</div>
+	<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+	<th:block th:replace="layout :: scriptsrc"></th:block>
+</body>
+</html>

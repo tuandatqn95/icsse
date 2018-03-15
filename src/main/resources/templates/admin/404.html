@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/layout :: ad-head"></head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header th:replace="admin/layout :: ad-header"></header>
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside th:replace="admin/layout :: ad-sidebar"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" style="min-height: 1126.3px;">
+			<!-- Main content -->
+			<section class="content">
+				<div class="error-page">
+					<h2 class="headline text-yellow">404</h2>
+
+					<div class="error-content">
+						<h3>
+							<i class="fa fa-warning text-yellow"></i> Oops! Page not found.
+						</h3>
+
+						<p>
+							We could not find the page you were looking for. Meanwhile, you
+							may <a href="../../index.html">return to dashboard</a> or try
+							using the search form.
+						</p>
+					</div>
+					<!-- /.error-content -->
+				</div>
+				<!-- /.error-page -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer th:replace="admin/layout :: ad-footer"></footer>
+
+		<!-- Control Sidebar -->
+		<aside th:replace="admin/layout :: ad-aside"></aside>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<th:block th:replace="admin/layout :: ad-scriptsrc"></th:block>
+	<script th:src="@{/admin/bower_components/ckeditor/ckeditor.js}"></script>
+	<script>
+		$(function() {
+			// Replace the <textarea id="editor1"> with a CKEditor
+			// instance, using default configuration.
+			CKEDITOR.replace('editor')
+
+		})
+	</script>
+</body>
+</html>

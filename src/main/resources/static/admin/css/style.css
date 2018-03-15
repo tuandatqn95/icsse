@@ -1,0 +1,17 @@
+.form-group input#slug {
+	font-style: italic;
+	border: 1px solid #fff;
+}
+
+.form-group input#slug:hover, input#slug:focus {
+	border-color: #eee;
+}
+
+label.label-slug {
+	float: left;
+	padding-top: 2px;
+}
+
+select.form-control option {
+	padding: 5px;
+}
