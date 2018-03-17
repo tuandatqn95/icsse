@@ -26,7 +26,7 @@
 ==================================== */
 body {
 	font-family: 'Open Sans', Arial, sans-serif;
-	font-size: 14px;
+	font-size: 15px;
 	font-weight: 300;
 	line-height: 1.6em;
 	color: #656565;
@@ -43,7 +43,7 @@ a:active {
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 700;
-	line-height: 1.1em;
+	line-height: 1.5em;
 	color: #666;
 	margin-bottom: 20px;
 }
@@ -1863,7 +1863,7 @@ footer {
 }
 
 footer {
-	padding: 50px 0 0 0;
+	padding: 15px 0 0 0;
 }
 
 footer a {
@@ -1903,7 +1903,7 @@ footer ul.social-network li i {
 #sub-footer {
 	text-shadow: none;
 	padding: 0;
-	padding-top: 30px;
+	padding: 30px;
 	margin: 20px 0 0 0;
 }
 
@@ -2055,6 +2055,7 @@ a.scrollup i:hover {
 
 .aligncenter {
 	text-align: center;
+	display: inline-block;
 }
 
 /* --- Image allignment style --- */
@@ -2590,3 +2591,16 @@ a.btn.btn-wide {
 }
 
 /* Theme Styler :: End */
+div.widget>ul.recent>li {
+	border-bottom: 1px dashed darkgray;
+	padding-bottom: 10px;
+}
+
+div.widget>ul.recent>li>em {
+	color: blue;
+}
+
+img.logo-sponsor {
+	height: 65px;
+	margin: 0 15px;
+}

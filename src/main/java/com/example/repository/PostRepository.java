@@ -10,5 +10,5 @@ import com.example.model.Post;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-	// List<Post> findTop5OrderByCreateDate();
+	List<Post> findTop5ByOrderByCreateDate();
 }

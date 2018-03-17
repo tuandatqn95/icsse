@@ -31,7 +31,7 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> getTop5Lastest() {
-		return postRepository.findAll();
+		return postRepository.findTop5ByOrderByCreateDate();
 	}
 
 	@Override

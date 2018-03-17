@@ -54,6 +54,8 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			pageService.save(new Page(0, "title", "content", "keynote-speakers", admin.getId()));
 		if (pageService.findBySlug("publication") == null)
 			pageService.save(new Page(0, "title", "content", "publication", admin.getId()));
+		if (pageService.findBySlug("program") == null)
+			pageService.save(new Page(0, "title", "content", "program", admin.getId()));
 		if (pageService.findBySlug("venue-hotel") == null)
 			pageService.save(new Page(0, "title", "content", "venue-hotel", admin.getId()));
 		if (pageService.findBySlug("gallery") == null)

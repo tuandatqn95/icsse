@@ -28,7 +28,7 @@ public class PostController {
 
 	@GetMapping("/lastest-post")
 	public String getLastestPost() {
-
+		
 		return "list-post";
 	}
 

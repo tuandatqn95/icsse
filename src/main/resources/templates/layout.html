@@ -66,7 +66,7 @@
 			<div class="navbar-collapse collapse ">
 				<ul class="nav navbar-nav">
 					<li><a th:href="@{/}">HOME</a></li>
-					<li class="dropdown active"><a href="#"
+					<li class="dropdown"><a href="#"
 						class="dropdown-toggle " data-toggle="dropdown"
 						data-hover="dropdown" data-delay="0" data-close-others="false">ABOUT
 							<i class="fa fa-angle-down"></i>
@@ -455,24 +455,13 @@
 	<div class="widget">
 		<h5 class="widgetheading">Latest posts</h5>
 		<ul class="recent">
-			<li><img src="img/dummies/blog/65x65/thumb1.jpg"
-				class="pull-left" alt="" />
+			<li th:each="post,iterStat : ${lastestposts}">
 				<h6>
-					<a href="#">Lorem ipsum dolor sit</a>
-				</h6>
-				<p>Mazim alienum appellantur eu cu ullum officiis pro pri</p></li>
-			<li><a href="#"><img src="img/dummies/blog/65x65/thumb2.jpg"
-					class="pull-left" alt="" /></a>
-				<h6>
-					<a href="#">Maiorum ponderum eum</a>
-				</h6>
-				<p>Mazim alienum appellantur eu cu ullum officiis pro pri</p></li>
-			<li><a href="#"><img src="img/dummies/blog/65x65/thumb3.jpg"
-					class="pull-left" alt="" /></a>
-				<h6>
-					<a href="#">Et mei iusto dolorum</a>
-				</h6>
-				<p>Mazim alienum appellantur eu cu ullum officiis pro pri</p></li>
+					<a th:href="@{posts/{id}-{slug}(id=${post.id},slug=${post.title})}" th:text="${post.title}"></a>
+				</h6> <em class="pull-right"
+				th:text="${'Created on ' + #dates.format(post.createDate, 'dd-MMM-yyyy')}"></em>
+			</li>
+
 		</ul>
 	</div>
 	<div class="widget">
@@ -490,58 +479,37 @@
 
 <footer th:fragment="footer">
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-3 col-lg-3">
-				<div class="widget">
-					<h4>Get in touch with us</h4>
-					<address>
-						<strong>Sailor company Inc</strong><br> Sailor suite room
-						V124, DB 91<br> Someplace 71745 Earth
-					</address>
-					<p>
-						<i class="icon-phone"></i> (123) 456-7890 - (123) 555-7891 <br>
-						<i class="icon-envelope-alt"></i> email@domainname.com
-					</p>
-				</div>
+		<div class="row text-center">
+			<h4 class="text-center">SPONSORED BY</h4>
+			<div class=" aligncenter client">
+				<img alt="logo" src="img/sponsors/HCMUTE.png"
+					class="logo-sponsor img-responsive">
 			</div>
-			<div class="col-sm-3 col-lg-3">
-				<div class="widget">
-					<h4>Information</h4>
-					<ul class="link-list">
-						<li><a href="#">Press release</a></li>
-						<li><a href="#">Terms and conditions</a></li>
-						<li><a href="#">Privacy policy</a></li>
-						<li><a href="#">Career center</a></li>
-						<li><a href="#">Contact us</a></li>
-					</ul>
-				</div>
 
+			<div class=" aligncenter client">
+				<img alt="logo" src="img/sponsors/IEEE.png"
+					class="logo-sponsor img-responsive">
 			</div>
-			<div class="col-sm-3 col-lg-3">
-				<div class="widget">
-					<h4>Pages</h4>
-					<ul class="link-list">
-						<li><a href="#">Press release</a></li>
-						<li><a href="#">Terms and conditions</a></li>
-						<li><a href="#">Privacy policy</a></li>
-						<li><a href="#">Career center</a></li>
-						<li><a href="#">Contact us</a></li>
-					</ul>
-				</div>
+
+			<div class=" aligncenter client">
+				<img alt="logo" src="img/sponsors/SMC.png"
+					class="logo-sponsor img-responsive">
 			</div>
-			<div class="col-sm-3 col-lg-3">
-				<div class="widget">
-					<h4>Newsletter</h4>
-					<p>Fill your email and sign up for monthly newsletter to keep
-						updated</p>
-					<div class="form-group multiple-form-group input-group">
-						<input type="email" name="email" class="form-control"> <span
-							class="input-group-btn">
-							<button type="button" class="btn btn-theme btn-add">Subscribe</button>
-						</span>
-					</div>
-				</div>
+
+			<div class=" aligncenter client">
+				<img alt="logo" src="img/sponsors/TASSE.jpg"
+					class="logo-sponsor img-responsive">
 			</div>
+
+			<div class=" aligncenter client">
+				<img alt="logo" src="img/sponsors/SO.jpg"
+					class="logo-sponsor img-responsive">
+			</div>
+			<div class=" aligncenter client">
+				<img alt="logo" src="img/sponsors/DAIKIN.png"
+					class="logo-sponsor img-responsive">
+			</div>
+
 		</div>
 	</div>
 	<div id="sub-footer">

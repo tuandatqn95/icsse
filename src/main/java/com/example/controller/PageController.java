@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.model.Page;
 import com.example.service.PageService;
+import com.example.service.PostService;
 
 @Controller
 public class PageController {
@@ -20,9 +21,13 @@ public class PageController {
 	@Autowired
 	private PageService pageService;
 
+	@Autowired
+	private PostService postService;
+
 	@GetMapping("/")
 	public String Home(Model model) {
 		model.addAttribute("page", pageService.findBySlug("home"));
+		model.addAttribute("lastestposts", postService.getTop5Lastest());
 		return "single-page";
 	}
 
