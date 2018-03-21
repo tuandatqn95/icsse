@@ -11,4 +11,9 @@ public class TechnicalBlogApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TechnicalBlogApplication.class, args);
 	}
+	
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(TechnicalBlogApplication.class);
+//	}
 }

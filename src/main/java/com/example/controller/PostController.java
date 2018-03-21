@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.model.Post;
@@ -28,8 +29,14 @@ public class PostController {
 
 	@GetMapping("/lastest-post")
 	public String getLastestPost() {
-		
+
 		return "list-post";
+	}
+
+	@RequestMapping("/ajax/html-sidebar")
+	public String getLastestPostSidebar(Model model) {
+		model.addAttribute("lastestposts", postService.getTop5Lastest());
+		return "sidebar";
 	}
 
 	@GetMapping("/posts/{id}-{slug}")

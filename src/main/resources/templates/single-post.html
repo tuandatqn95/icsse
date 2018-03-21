@@ -16,7 +16,7 @@
 						<h3 th:text="${post.title}" class="text-center"></h3>
 						<th:block th:utext="${post.content}"></th:block>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-4" id="aside-content">
 						<aside th:replace="layout :: right-sidebar"></aside>
 					</div>
 				</div>

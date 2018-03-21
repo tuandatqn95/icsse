@@ -48,7 +48,7 @@
 
 			<!-- Logo -->
 			<a th:href="@{/admin}" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
+				<span class="logo-mini"><b>ICSSE</b></span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>ICSSE</b> Admin</span>
 			</a>
 
@@ -69,7 +69,7 @@
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img th:src="@{/admin/dist/img/avatar5.png}" class="user-image"
 								alt="User Image"> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Nguyen Tuan Dat</span>
+								<span class="hidden-xs" th:text="${#authentication.name}"></span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -107,9 +107,7 @@
 								</li>
 							</ul>
 						</li>
-						<!-- Control Sidebar Toggle Button -->
-						<li><a href="#" data-toggle="control-sidebar"><i
-								class="fa fa-gears"></i></a></li>
+
 					</ul>
 				</div>
 			</nav>
@@ -127,7 +125,7 @@
 							alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Nguyen Tuan Dat</p>
+						<p th:text="${#authentication.name}"></p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -151,8 +149,7 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">MAIN NAVIGATION</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li th:classappend="${dashboardView}?'active':''"><a
-						th:href="@{/admin}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+
 					<li class="treeview"
 						th:classappend="${postsView}?'menu-open active':''"><a
 						href="#"><i class="fa fa-link"></i> <span>Posts</span> <span
@@ -246,82 +243,12 @@
 		<!-- Main Footer -->
 		<footer class="main-footer" th:fragment="ad-footer">
 			<!-- To the right -->
-			<div class="pull-right hidden-xs">Anything you want</div>
 			<!-- Default to the left -->
-			<strong>Copyright &copy; 2017 <a href="#">Tuan Dat</a>.
+			<strong>Copyright &copy; 2017 <a href="#">HCMUTE</a>.
 			</strong> All rights reserved.
 		</footer>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark"
-			th:fragment="ad-aside">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li class="active"><a href="#control-sidebar-home-tab"
-					data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
-						class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane active" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:;"> <i
-								class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-									<p>Will be 23 on April 24th</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript:;">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design <span class="pull-right-container">
-										<span class="label label-danger pull-right">70%</span>
-									</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger"
-										style="width: 70%"></div>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
-					Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Report panel
-								usage <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Some information about this general settings option</p>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
 		<!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
