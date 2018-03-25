@@ -50,6 +50,7 @@ public class PageController {
 	@GetMapping("/{slug}")
 	public String getPageBySlug(@PathVariable String slug, Model model) throws IOException {
 		model.addAttribute("page", pageService.findBySlug(slug));
+		model.addAttribute("attachments", driveService.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
 		return "single-page";
 	}
 
