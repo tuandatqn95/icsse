@@ -49,6 +49,27 @@
 											th:field="*{content}"></textarea>
 									</div>
 
+									<div class="form-group"
+										th:unless="${#lists.isEmpty(attachments)}">
+										<label>Attachment</label>
+										<div style="padding: 10px;">
+
+											<div class="callout callout-info"
+												th:each="attachment : ${attachments}">
+												<a
+													th:href="@{/admin/pages/{slug}/rm-att/{fileId}(slug=${page.slug},fileId=${attachment.id})}"
+													class="close">&times;</a> <a
+													th:href="@{/attachments/{fileId}(fileId=${attachment.id})}"
+													th:text="${attachment.name}"></a>
+											</div>
+										</div>
+									</div>
+
+									<!-- Trigger the modal with a button -->
+									<button type="button" class="btn btn-success"
+										data-toggle="modal" data-target="#myModal">+ Add
+										Attachment</button>
+
 								</div>
 								<!-- /.col -->
 
@@ -56,6 +77,7 @@
 							<!-- /.row -->
 						</div>
 						<!-- /.box-body -->
+
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary pull-right">Submit</button>
 						</div>
@@ -65,7 +87,37 @@
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
 
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">File Upload</h4>
+					</div>
+					<div class="modal-body">
+
+						<form method="POST" enctype="multipart/form-data"
+							th:action="@{./{slug}(slug=${page.slug})}">
+
+							<div class="form-group">
+								<label>Select file to upload:</label> <input type="file"
+									name="file" id="chooseFileBtn">
+							</div>
+							<div class="text-center">
+								<input type="submit" class="btn btn-success" value="Upload file" />
+							</div>
+						</form>
+					</div>
+					<!-- <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div> -->
+				</div>
+
+			</div>
+		</div>
 		<!-- Main Footer -->
 		<footer th:replace="admin/layout :: ad-footer"></footer>
 
@@ -77,10 +129,17 @@
 
 	<th:block th:replace="admin/layout :: ad-scriptsrc"></th:block>
 	<script th:src="@{/admin/bower_components/ckeditor/ckeditor.js}"></script>
+	<script th:src="@{/admin/dist/js/bootstrap-filestyle.js}"></script>
 	<script>
 		$(function() {
 			CKEDITOR.replace('content-editor')
 		})
+	</script>
+	<script>
+		$('#chooseFileBtn').filestyle({
+			buttonName : 'btn-info',
+			buttonText : ' Select a File'
+		});
 	</script>
 </body>
 </html>

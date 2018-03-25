@@ -15,10 +15,29 @@
 					<div class="col-lg-8">
 						<h3 th:text="${page.title}" class="text-center"></h3>
 						<th:block th:utext="${page.content}"></th:block>
+						<div class="panel panel-default" style="margin: 50px 20px 0px;"
+							th:unless="${#lists.isEmpty(attachments)}">
+							<div class="panel-heading">Attachment</div>
+
+							<ul class="list-group">
+								<li class="list-group-item"
+									th:each="attachment : ${attachments}"><a
+									th:href="@{/attachments/{fileId}(fileId=${attachment.id})}"
+									th:text="${attachment.name}"></a></li>
+
+							</ul>
+
+						</div>
+						<!-- <div>
+
+							<div style="padding: 10px;">
+
+								<div class="callout callout-info"
+									th:each="attachment : ${attachments}"></div>
+							</div>
+						</div> -->
 					</div>
-					<div class="col-lg-4" id="aside-content">
-						
-					</div>
+					<div class="col-lg-4" id="aside-content"></div>
 				</div>
 			</div>
 		</section>

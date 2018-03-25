@@ -1,6 +1,7 @@
 package com.example.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,6 +39,17 @@ public class Page implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "userid", nullable = false, updatable = false, insertable = false)
 	private User user;
+
+	@OneToMany(mappedBy = "page")
+	private Set<DriveFile> driveFiles;
+
+	public Set<DriveFile> getDriveFiles() {
+		return driveFiles;
+	}
+
+	public void setDriveFiles(Set<DriveFile> driveFiles) {
+		this.driveFiles = driveFiles;
+	}
 
 	public int getId() {
 		return id;
