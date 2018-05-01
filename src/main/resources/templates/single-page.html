@@ -22,8 +22,8 @@
 							<ul class="list-group">
 								<li class="list-group-item"
 									th:each="attachment : ${attachments}"><a
-									th:href="@{/attachments/{fileId}(fileId=${attachment.id})}"
-									th:text="${attachment.name}"></a></li>
+									th:href="@{/attachments/{fileId}(fileId=${attachment.key})}"
+									th:text="${attachment.key}"></a></li>
 
 							</ul>
 

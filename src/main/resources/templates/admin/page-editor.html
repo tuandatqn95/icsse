@@ -57,10 +57,10 @@
 											<div class="callout callout-info"
 												th:each="attachment : ${attachments}">
 												<a
-													th:href="@{/admin/pages/{slug}/rm-att/{fileId}(slug=${page.slug},fileId=${attachment.id})}"
+													th:href="@{/admin/pages/{slug}/rm-att/{fileId}(slug=${page.slug},fileId=${attachment.key})}"
 													class="close">&times;</a> <a
-													th:href="@{/attachments/{fileId}(fileId=${attachment.id})}"
-													th:text="${attachment.name}"></a>
+													th:href="@{/attachments/{fileId}(fileId=${attachment.key})}"
+													th:text="${attachment.key}"></a>
 											</div>
 										</div>
 									</div>

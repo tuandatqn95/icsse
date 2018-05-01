@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.amazonaws.services.s3.model.S3Object;
 import com.example.model.DriveFile;
 import com.example.model.Page;
 import com.example.service.DriveFileService;
 import com.example.service.PageService;
+import com.example.storage.AmazonS3Service;
 import com.example.storage.DriveService;
 import com.example.storage.StorageService;
 import com.google.api.services.drive.model.File;
@@ -32,9 +34,13 @@ public class PageController {
 
 	@Autowired
 	private StorageService storageService;
+	//
+	// @Autowired
+	// private DriveService driveService;
+	//
 
 	@Autowired
-	private DriveService driveService;
+	private AmazonS3Service amazonS3Service;
 
 	@Autowired
 	private DriveFileService driveFileService;
@@ -43,21 +49,23 @@ public class PageController {
 	public String Home(Model model) throws IOException {
 		model.addAttribute("page", pageService.findBySlug("home"));
 		model.addAttribute("attachments",
-				driveService.getListDriveFile(pageService.findBySlug("home").getDriveFiles()));
+				amazonS3Service.getListDriveFile(pageService.findBySlug("home").getDriveFiles()));
 		return "single-page";
 	}
 
 	@GetMapping("/{slug}")
 	public String getPageBySlug(@PathVariable String slug, Model model) throws IOException {
 		model.addAttribute("page", pageService.findBySlug(slug));
-		model.addAttribute("attachments", driveService.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
+		model.addAttribute("attachments",
+				amazonS3Service.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
 		return "single-page";
 	}
 
 	@GetMapping("/admin/pages/{slug}")
 	public String getEditPageBySlug(@PathVariable String slug, Model model) throws IOException {
 		model.addAttribute("page", pageService.findBySlug(slug));
-		model.addAttribute("attachments", driveService.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
+		model.addAttribute("attachments",
+				amazonS3Service.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
 		return "admin/page-editor";
 	}
 
@@ -66,11 +74,16 @@ public class PageController {
 			throws IOException {
 		Page page = pageService.findBySlug(slug);
 		Path filePath = storageService.store(file);
-		File driveFile = driveService.uploadFile(filePath, false);
-		DriveFile driveInfo = new DriveFile(page.getId(), driveFile.getId());
+		// File driveFile = driveService.uploadFile(filePath, false);
+
+		String objectKey = amazonS3Service.upload(filePath.toFile());
+
+		DriveFile driveInfo = new DriveFile(page.getId(), objectKey);
+
 		driveFileService.save(driveInfo);
 		model.addAttribute("page", page);
-		model.addAttribute("attachments", driveService.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
+		model.addAttribute("attachments",
+				amazonS3Service.getListDriveFile(pageService.findBySlug(slug).getDriveFiles()));
 		return "admin/page-editor";
 	}
 
